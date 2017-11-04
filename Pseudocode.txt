@@ -1,0 +1,78 @@
+start
+    get turtle graphics
+    tell OS to draw screen
+    set drawing area
+    set window size
+    save button shapes
+    set screen update time to 0 ms (instant)
+    create empty list for main buttons
+    append first turtle to button list
+    pick up pen
+    set turtle shape to box
+    move turtle to start location
+    for turtle 2 through 16
+        append clone of first turtle to list of turtles
+    move turtles to y coordinates
+    move turtles to x coordinates
+    create special turtle for 0 button
+    create special turtle for decimal
+    create special turtle for 'calculate' (equals) button
+    create printer turtle
+    create cursor turtle
+    declare num1 variable equals ''
+    declare num2 variable equals ''
+    declare operator variable equals ''
+    create function myMainloop with parameters x and y
+        set oldpos to global
+        set num1 to global
+        set num2 to global
+        set operator to global
+        move cursor to location x,y
+        if operator equal to ''
+            if cursor position is in range of main button turtle
+                printer turtle prints value of main button turtle
+                num1 append appropriate value
+            else if cursor position is in range of 0 turtle
+                printer turtle prints value of button
+                num1 append '0'
+            else if cursor position is in range of decimal turtle
+                printer turtle prints value of button
+                num1 append '.'
+            else if cursor position is in range of operator turtle
+                printer turtle prints value of button
+                operator equals equivalent operation symbol
+            else if cursor position is in range of clear turtle
+                num1 equals ''
+                num2 equals ''
+                operator equals ''
+            end if
+        else if operator not equal to '' and operator not equal to '='
+            if cursor position is in range of main button turtle
+                printer turtle prints value of main button turtle
+                num2 append appropriate value
+            else if cursor position is in range of 0 turtle
+                printer turtle prints value of button
+                num2 append '0'
+            else if cursor position is in range of decimal turtle
+                printer turtle prints value of button
+                num2 append '.'
+            else if cursor position is in range of operator turtle
+                printer turtle prints value of button
+                operator equals equivalent operation symbol
+            else if cursor position is in range of clear turtle
+                num2 equals ''
+                operator equals ''
+            end if
+        else if operator equal to '='
+            num1 equals num1 operated on by num2
+            printer turtle prints num1
+            num2 equals ''
+            operator equals ''
+        end if
+        oldpos equals cursor position
+        
+    on click call myMainloop and pass click location
+    listen for click
+    
+    call mainloop
+stop
